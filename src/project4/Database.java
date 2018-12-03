@@ -183,7 +183,7 @@ public class Database {
         }
         return out;
     }
-//    //Update a new location
+    //Update a new location
     public void UpdateLocation (String location, String name){
         try {
             conn = DriverManager.getConnection(url);
