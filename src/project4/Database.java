@@ -186,7 +186,6 @@ public class Database {
 //    //Update a new location
     public void UpdateLocation (String location, String name){
         try {
-            System.out.println("inside update location function!!");
             conn = DriverManager.getConnection(url);
             st = conn.createStatement();
 
