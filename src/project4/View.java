@@ -22,6 +22,24 @@ public class View extends javax.swing.JFrame {
         setLocation(x, y);
        
     }
+    //Search Panel 
+    public String getSearch(){
+        return SearchField.getText();
+    }
+    
+    public void setSearchName(String name){
+        SearchNameField.setText(name);
+    }
+    public void setSearchType(String type){
+        SearchTypeField.setText(type);
+    }
+    public void setSearchLocation(String location){
+        SearchLocationField.setText(location);
+    }
+    public void addSearchAnimalActionListener(ActionListener a) {
+        SearchBtn.addActionListener(a);
+    }
+    
     
     //Add Animal Panel
     public String getAddName() {
@@ -62,12 +80,6 @@ public class View extends javax.swing.JFrame {
     public void setActivity(String activity) {
         ActivityField.setText(activity);
     }
-    public String getActivityLocation() {
-        return LocationField.getText();
-    }
-    public void setActivityLocation(String location) {
-        LocationField.setText(location);
-    }
     public void addActivityActionListener(ActionListener a) {
         AddActivityBtn.addActionListener(a);
     }
@@ -82,12 +94,7 @@ public class View extends javax.swing.JFrame {
     public void setMoveName(String s){
         MoveInNameField.setText(s);
     }
-    public String setMoveType(){
-        return MoveInTypeField.getText();
-    }   
-    public void setMoveType(String s){
-        MoveInTypeField.setText(s);
-    }
+   
     public String getMoveLocation(){
         return MoveInField.getText();
     }
@@ -119,19 +126,21 @@ public class View extends javax.swing.JFrame {
     }
     
     //Activity Log
+  
+    public void setActivityTableModel(TableModel model) {
+        ActivityLog.setModel(model);
+    }
+    
     public void setActivityLogValue (String s, int row, int column){
         ActivityLog.setValueAt((Object)s, row, column);
     }
-    public void addActivityLog (String str1, String str2, String str3, String str4){
+    public void addActivityLog (String str1, String str2, String str3){
         DefaultTableModel table = (DefaultTableModel) ActivityLog.getModel();
-        table.addRow(new Object[]{str1,str2,str3,str4});
+        table.addRow(new Object[]{str1,str2,str3});
     }
     
     //Location Log
-     public void getLocationTableModel(TableModel model) {
-        LocationLog.setModel(model);
-    }
-
+   
     public void setLocationTableModel(TableModel model) {
         LocationLog.setModel(model);
     }
@@ -163,6 +172,17 @@ public class View extends javax.swing.JFrame {
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
         ContentPane = new javax.swing.JTabbedPane();
+        SearchPane = new javax.swing.JPanel();
+        SearchName = new javax.swing.JLabel();
+        SearchNameField = new javax.swing.JTextField();
+        SearchType = new javax.swing.JLabel();
+        SearchTypeField = new javax.swing.JTextField();
+        SearchName2 = new javax.swing.JLabel();
+        SearchLocationField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        SearchField = new javax.swing.JTextField();
+        SearchBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         AddAnimalPane = new javax.swing.JPanel();
         addNameTitle = new javax.swing.JLabel();
         addTypeTitle = new javax.swing.JLabel();
@@ -172,15 +192,17 @@ public class View extends javax.swing.JFrame {
         addLocationTitle = new javax.swing.JLabel();
         AddTypeField = new javax.swing.JTextField();
         Reset1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        LocationLog = new javax.swing.JTable();
         AddActivityPane = new javax.swing.JPanel();
         AnimalNameTitle = new javax.swing.JLabel();
         AddActivityTitle = new java.awt.Label();
-        LocationTitle = new javax.swing.JLabel();
         ActivityField = new javax.swing.JTextField();
-        LocationField = new javax.swing.JTextField();
         AddActivityBtn = new javax.swing.JButton();
         Reset2 = new javax.swing.JButton();
         NameField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ActivityLog = new javax.swing.JTable();
         TransportPane = new javax.swing.JPanel();
         CategoryIn = new javax.swing.JLabel();
         CateoryOut = new javax.swing.JLabel();
@@ -194,15 +216,7 @@ public class View extends javax.swing.JFrame {
         MoveOutNameField = new javax.swing.JTextField();
         MoveOutTypeField = new javax.swing.JTextField();
         MoveInNameTitle = new javax.swing.JLabel();
-        MoveInTypeTitle = new javax.swing.JLabel();
-        MoveInTypeField = new javax.swing.JTextField();
         MoveInNameField = new javax.swing.JTextField();
-        ActivityPane = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ActivityLog = new javax.swing.JTable();
-        LocationPane = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        LocationLog = new javax.swing.JTable();
         Title = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
@@ -223,266 +237,60 @@ public class View extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        SearchPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        SearchName.setText("Name:");
+        SearchPane.add(SearchName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
+
+        SearchNameField.setEditable(false);
+        SearchPane.add(SearchNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 178, -1));
+
+        SearchType.setText("Type:");
+        SearchPane.add(SearchType, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 139, -1, -1));
+
+        SearchTypeField.setEditable(false);
+        SearchPane.add(SearchTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 178, -1));
+
+        SearchName2.setText("Location:");
+        SearchPane.add(SearchName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 216, -1, -1));
+
+        SearchLocationField.setEditable(false);
+        SearchPane.add(SearchLocationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 178, -1));
+
+        jLabel1.setText("SEARCH FOR ANIMAL");
+        SearchPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+
+        SearchField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        SearchPane.add(SearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 230, -1));
+
+        SearchBtn.setText("SEARCH");
+        SearchPane.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
+
+        jLabel2.setText("Animal's Type");
+        SearchPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
+
+        ContentPane.addTab("Search", SearchPane);
+
+        AddAnimalPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         addNameTitle.setText("Name:");
+        AddAnimalPane.add(addNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         addTypeTitle.setText("Type:");
+        AddAnimalPane.add(addTypeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+        AddAnimalPane.add(AddNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 197, -1));
+        AddAnimalPane.add(AddLocationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 197, -1));
 
         addAnimalBtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         addAnimalBtn.setLabel("Add Animal");
+        AddAnimalPane.add(addAnimalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         addLocationTitle.setText("Location:");
+        AddAnimalPane.add(addLocationTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        AddAnimalPane.add(AddTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 197, -1));
 
         Reset1.setText("Reset");
-
-        javax.swing.GroupLayout AddAnimalPaneLayout = new javax.swing.GroupLayout(AddAnimalPane);
-        AddAnimalPane.setLayout(AddAnimalPaneLayout);
-        AddAnimalPaneLayout.setHorizontalGroup(
-            AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddAnimalPaneLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addLocationTitle)
-                    .addComponent(addTypeTitle)
-                    .addComponent(addNameTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AddLocationField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(542, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AddAnimalPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Reset1)
-                    .addComponent(addAnimalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(235, 235, 235))
-        );
-        AddAnimalPaneLayout.setVerticalGroup(
-            AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddAnimalPaneLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addNameTitle)
-                    .addComponent(AddNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addComponent(addAnimalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addTypeTitle)
-                    .addComponent(AddTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(Reset1)
-                .addGap(4, 4, 4)
-                .addGroup(AddAnimalPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addLocationTitle)
-                    .addComponent(AddLocationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(89, Short.MAX_VALUE))
-        );
-
-        ContentPane.addTab("Add Animal", AddAnimalPane);
-
-        AnimalNameTitle.setText("Name:");
-
-        AddActivityTitle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        AddActivityTitle.setText("Add Activity");
-
-        LocationTitle.setText("Location: ");
-
-        AddActivityBtn.setText("Add Activity");
-
-        Reset2.setText("Reset");
-
-        javax.swing.GroupLayout AddActivityPaneLayout = new javax.swing.GroupLayout(AddActivityPane);
-        AddActivityPane.setLayout(AddActivityPaneLayout);
-        AddActivityPaneLayout.setHorizontalGroup(
-            AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddActivityPaneLayout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddActivityTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AnimalNameTitle)
-                    .addComponent(LocationTitle))
-                .addGap(30, 30, 30)
-                .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ActivityField)
-                    .addComponent(LocationField)
-                    .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AddActivityBtn)
-                    .addComponent(Reset2))
-                .addGap(170, 170, 170))
-        );
-        AddActivityPaneLayout.setVerticalGroup(
-            AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AddActivityPaneLayout.createSequentialGroup()
-                .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AddActivityPaneLayout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(AddActivityBtn))
-                    .addGroup(AddActivityPaneLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(AnimalNameTitle))
-                        .addGap(27, 27, 27)
-                        .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddActivityTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ActivityField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(21, 21, 21)
-                .addGroup(AddActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LocationTitle)
-                    .addComponent(LocationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reset2))
-                .addContainerGap(140, Short.MAX_VALUE))
-        );
-
-        ContentPane.addTab("Add Activity", AddActivityPane);
-
-        CategoryIn.setText("Within Zoo");
-
-        CateoryOut.setText("Outside of the Zoo");
-
-        MoveInTitle.setText("Move to: ");
-        MoveInTitle.setToolTipText("");
-
-        MoveOutBtn.setText("Move");
-
-        MoveInBtn.setText("Move");
-
-        Reset3.setText("Reset");
-
-        MoveOutTitle1.setText("Name:");
-        MoveOutTitle1.setToolTipText("");
-
-        MoveOutTypeTitle.setText("Type:");
-        MoveOutTypeTitle.setToolTipText("");
-
-        MoveInNameTitle.setText("Name:");
-        MoveInNameTitle.setToolTipText("");
-
-        MoveInTypeTitle.setText("Type:");
-        MoveInTypeTitle.setToolTipText("");
-
-        javax.swing.GroupLayout TransportPaneLayout = new javax.swing.GroupLayout(TransportPane);
-        TransportPane.setLayout(TransportPaneLayout);
-        TransportPaneLayout.setHorizontalGroup(
-            TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TransportPaneLayout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(CategoryIn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CateoryOut)
-                .addGap(201, 201, 201))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransportPaneLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MoveInTypeTitle)
-                    .addGroup(TransportPaneLayout.createSequentialGroup()
-                        .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MoveInTitle)
-                            .addComponent(MoveInNameTitle))
-                        .addGap(34, 34, 34)
-                        .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(MoveInTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MoveInField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MoveInNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MoveOutTitle1)
-                    .addComponent(MoveOutTypeTitle))
-                .addGap(60, 60, 60)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MoveOutTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveOutNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransportPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Reset3)
-                .addGap(192, 192, 192)
-                .addComponent(MoveOutBtn)
-                .addGap(186, 186, 186))
-            .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(TransportPaneLayout.createSequentialGroup()
-                    .addGap(185, 185, 185)
-                    .addComponent(MoveInBtn)
-                    .addContainerGap(681, Short.MAX_VALUE)))
-        );
-        TransportPaneLayout.setVerticalGroup(
-            TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TransportPaneLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CategoryIn)
-                    .addComponent(CateoryOut))
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(TransportPaneLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MoveOutTitle1)
-                            .addComponent(MoveOutNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MoveInNameTitle))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransportPaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MoveInNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveOutTypeTitle)
-                    .addComponent(MoveOutTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MoveInTypeTitle)
-                    .addComponent(MoveInTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveInTitle)
-                    .addComponent(MoveInField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MoveOutBtn)
-                    .addComponent(Reset3))
-                .addGap(94, 94, 94))
-            .addGroup(TransportPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TransportPaneLayout.createSequentialGroup()
-                    .addContainerGap(263, Short.MAX_VALUE)
-                    .addComponent(MoveInBtn)
-                    .addGap(93, 93, 93)))
-        );
-
-        ContentPane.addTab("Transporting", TransportPane);
-
-        ActivityLog.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Activity", "Animal's Name", "Animal's Type", "Date and Time"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(ActivityLog);
-
-        javax.swing.GroupLayout ActivityPaneLayout = new javax.swing.GroupLayout(ActivityPane);
-        ActivityPane.setLayout(ActivityPaneLayout);
-        ActivityPaneLayout.setHorizontalGroup(
-            ActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ActivityPaneLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
-        );
-        ActivityPaneLayout.setVerticalGroup(
-            ActivityPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-        );
-
-        ContentPane.addTab("Activity Log", ActivityPane);
+        AddAnimalPane.add(Reset1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
 
         LocationLog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -502,21 +310,87 @@ public class View extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(LocationLog);
 
-        javax.swing.GroupLayout LocationPaneLayout = new javax.swing.GroupLayout(LocationPane);
-        LocationPane.setLayout(LocationPaneLayout);
-        LocationPaneLayout.setHorizontalGroup(
-            LocationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LocationPaneLayout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124))
-        );
-        LocationPaneLayout.setVerticalGroup(
-            LocationPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-        );
+        AddAnimalPane.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 0, 550, 390));
 
-        ContentPane.addTab("Location Log", LocationPane);
+        ContentPane.addTab("Add Animal", AddAnimalPane);
+
+        AddActivityPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AnimalNameTitle.setText("Name:");
+        AddActivityPane.add(AnimalNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        AddActivityTitle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        AddActivityTitle.setText("Add Activity");
+        AddActivityPane.add(AddActivityTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        AddActivityPane.add(ActivityField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 240, -1));
+
+        AddActivityBtn.setText("Add Activity");
+        AddActivityPane.add(AddActivityBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+
+        Reset2.setText("Reset");
+        AddActivityPane.add(Reset2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, 30));
+        AddActivityPane.add(NameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 240, -1));
+
+        ActivityLog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Animal's Name", "Activity", "Date and Time"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(ActivityLog);
+
+        AddActivityPane.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 0, 500, 390));
+
+        ContentPane.addTab("Add Activity", AddActivityPane);
+
+        TransportPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CategoryIn.setText("Within Zoo");
+        TransportPane.add(CategoryIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 73, -1, -1));
+
+        CateoryOut.setText("Outside of the Zoo");
+        TransportPane.add(CateoryOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, -1, -1));
+
+        MoveInTitle.setText("Move to: ");
+        MoveInTitle.setToolTipText("");
+        TransportPane.add(MoveInTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        TransportPane.add(MoveInField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 222, -1));
+
+        MoveOutBtn.setText("Move");
+        TransportPane.add(MoveOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 262, -1, -1));
+
+        MoveInBtn.setText("Move");
+        TransportPane.add(MoveInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 263, -1, -1));
+
+        Reset3.setText("Reset");
+        TransportPane.add(Reset3, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 262, -1, -1));
+
+        MoveOutTitle1.setText("Name:");
+        MoveOutTitle1.setToolTipText("");
+        TransportPane.add(MoveOutTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 114, -1, -1));
+
+        MoveOutTypeTitle.setText("Type:");
+        MoveOutTypeTitle.setToolTipText("");
+        TransportPane.add(MoveOutTypeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, -1, -1));
+        TransportPane.add(MoveOutNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 222, -1));
+        TransportPane.add(MoveOutTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 222, -1));
+
+        MoveInNameTitle.setText("Name:");
+        MoveInNameTitle.setToolTipText("");
+        TransportPane.add(MoveInNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+        TransportPane.add(MoveInNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 222, -1));
+
+        ContentPane.addTab("Transporting", TransportPane);
 
         Title.setText("ZOOLOGISTICS");
 
@@ -600,7 +474,6 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ActivityField;
     private javax.swing.JTable ActivityLog;
-    private javax.swing.JPanel ActivityPane;
     private javax.swing.JButton AddActivityBtn;
     private javax.swing.JPanel AddActivityPane;
     private java.awt.Label AddActivityTitle;
@@ -614,18 +487,13 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTabbedPane ContentPane;
     private javax.swing.JMenu Exit;
     private javax.swing.JMenu File;
-    private javax.swing.JTextField LocationField;
     private javax.swing.JTable LocationLog;
-    private javax.swing.JPanel LocationPane;
-    private javax.swing.JLabel LocationTitle;
     private javax.swing.JMenuBar MenuBar;
     private javax.swing.JButton MoveInBtn;
     private javax.swing.JTextField MoveInField;
     private javax.swing.JTextField MoveInNameField;
     private javax.swing.JLabel MoveInNameTitle;
     private javax.swing.JLabel MoveInTitle;
-    private javax.swing.JTextField MoveInTypeField;
-    private javax.swing.JLabel MoveInTypeTitle;
     private javax.swing.JButton MoveOutBtn;
     private javax.swing.JTextField MoveOutNameField;
     private javax.swing.JLabel MoveOutTitle1;
@@ -635,6 +503,15 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton Reset1;
     private javax.swing.JButton Reset2;
     private javax.swing.JButton Reset3;
+    private javax.swing.JButton SearchBtn;
+    private javax.swing.JTextField SearchField;
+    private javax.swing.JTextField SearchLocationField;
+    private javax.swing.JLabel SearchName;
+    private javax.swing.JLabel SearchName2;
+    private javax.swing.JTextField SearchNameField;
+    private javax.swing.JPanel SearchPane;
+    private javax.swing.JLabel SearchType;
+    private javax.swing.JTextField SearchTypeField;
     private javax.swing.JLabel Title;
     private javax.swing.JPanel TransportPane;
     private java.awt.Button addAnimalBtn;
@@ -642,6 +519,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel addNameTitle;
     private javax.swing.JLabel addTypeTitle;
     private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

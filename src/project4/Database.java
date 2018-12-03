@@ -2,6 +2,7 @@
 package project4;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,94 +25,31 @@ public class Database {
         }
     
     }
-       
-    public int AddAnimal(String name, String type, String location) throws ClassNotFoundException {
-
+    public void SearchAnimal(View v, String name) {
         try {
+            //System.setProperty("jdbc.drivers", jdbc_drivers);
 
             conn = DriverManager.getConnection(url);
             st = conn.createStatement();
 
-            String sql = "INSERT INTO Animal(name, type, location) VALUES (?,?,?);";
+            String sql = "SELECT * FROM Animal WHERE Type = ?";
+
             pst = conn.prepareStatement(sql);
+           
             pst.setString(1, name);
-            pst.setString(2, type);
-            pst.setString(3, location);
+            rs = pst.executeQuery();
             
-            pst.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return out;
-    }
-    
-    //Delete item based on Animal's name
-    public void MoveAnimalOut(String Table, String col, String data) {
-
-        try {
-            conn = DriverManager.getConnection(url);
-            st = conn.createStatement();
-
-            //Delete table
-            String sql = "DELETE FROM Animal WHERE Name = ?";
-
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, data);
-            System.out.println(Table);
-            System.out.println(col);
-            System.out.println(data);
-            pst.executeUpdate();
+            if (rs.next()) {
+                System.out.println(rs.getString(1));
+                v.setSearchName(rs.getString(1));
+                v.setSearchType(rs.getString(2));
+                v.setSearchLocation(rs.getString(3));
+                
+            } 
 
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (st != null) {
-                    st.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-    //Update database 
-    public void Update(String Table, String colu1, String data1, String colu2, String data2) {
-
-        try {
-           // System.setProperty("jdbc.drivers", jdbc_drivers);
-
-            conn = DriverManager.getConnection(url);
-            st = conn.createStatement();
-
-            String updateTable = "UPDATE " + Table + " SET " + colu1 + " = " + data1 + " WHERE " + colu2 + " = " + data2 + ";";
-            st.executeUpdate(updateTable);
-            System.out.println("Updated table in database...");
-
-        } catch (SQLException ex) {
-            // Logger lgr = Logger.getLogger(Version.class.getName());
+            //Logger lgr = Logger.getLogger(Version.class.getName());
             //lgr.log(Level.SEVERE, ex.getMessage(), ex);
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -133,7 +71,189 @@ public class Database {
                 //lgr.log(Level.WARNING, ex.getMessage(), ex);
             }
         }
+    }   
+    public int AddAnimal(String name, String type, String location) throws ClassNotFoundException {
+
+        try {
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            String sql = "INSERT INTO Animal(name, type, location) VALUES (?,?,?);";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, name);
+            pst.setString(2, type);
+            pst.setString(3, location);
+            
+            pst.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return out;
     }
+    public boolean ConstrainName (String name) {
+      
+         try{
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            String sql = "SELECT * FROM Animal WHERE Name='"+name+"';";
+            rs = st.executeQuery(sql);
+            
+            if (rs.next()){
+                System.out.println(sql + "\nSuccessful!");
+                return true;
+            }
+                System.out.println(sql + "\nFail!");
+                return false;
+            
+            
+        }  catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public boolean ConstrainType (String type) {
+      
+         try{
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            String sql = "SELECT * FROM Animal WHERE Type='"+type+"';";
+            rs = st.executeQuery(sql);
+            
+            if (rs.next()){
+                System.out.println(sql + "\nSuccessful!");
+                return true;
+            }
+                System.out.println(sql + "\nFail!");
+                return false;
+            
+            
+        }  catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public int AddActivity(String name, String activity, String datetime) throws ClassNotFoundException {
+
+        try {
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            String sql = "INSERT INTO Activity(name, activity, datetime) VALUES (?,?,?);";
+            pst = conn.prepareStatement(sql);
+            
+            pst.setString(1, name);
+            pst.setString(2, activity);
+            pst.setString(3, datetime);
+
+            pst.executeUpdate();
+            
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return out;
+    }
+//    //Update a new location
+//    public void UpdateLocation (String location, String name){
+//        try {
+//            conn = DriverManager.getConnection(url);
+//            st = conn.createStatement();
+//
+//            //Delete Location table
+//            String sql = "UPDATE Animal SET Location='" + location + "'" + " WHERE Name ='" + name + "';";
+//            st.executeUpdate(sql);
+//            System.out.println("Location got updated!");
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        } finally {
+//            try {
+//                if (rs != null) {
+//                    rs.close();
+//                }
+//                if (st != null) {
+//                    st.close();
+//                }
+//                if (conn != null) {
+//                    conn.close();
+//                }
+//
+//            } catch (SQLException ex) {
+//                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//    }
+//    
+//    
+    //Delete item based on Animal's name
+    public void MoveAnimalOut(String Table, String col, String data) {
+
+        try {
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            //Delete Location table
+            String sql = "DELETE FROM Animal WHERE Name = ?";
+
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, data);
+            System.out.println(Table);
+            System.out.println(col);
+            System.out.println(data);
+            pst.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     //Update Location Table
     public void updateLocationTable(View v) throws SQLException {
         ResultSet s;
@@ -164,12 +284,50 @@ public class Database {
                 }
 
             } catch (SQLException ex) {
-                // Logger lgr = Logger.getLogger(Version.class.getName());
+               
                 Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-                //lgr.log(Level.WARNING, ex.getMessage(), ex);
+         
             }
         }
     }
+    
+    //Update Location Table
+    public void updateActivityTable(View v) throws SQLException {
+        ResultSet s;
+        try {
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            String updateTable = "SELECT * FROM Activity";
+            s = st.executeQuery(updateTable);
+
+            v.setActivityTableModel(buildTableModel(s));
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+               
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+         
+            }
+        }
+    }
+
     public static DefaultTableModel buildTableModel(ResultSet rs) throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
@@ -194,70 +352,5 @@ public class Database {
         return new DefaultTableModel(data, columnNames);
 
     }
-    //Get the animal's name using animal's type
-    public String getName(String n){
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery("SELECT Name, Type FROM Animal;");
-            while(rs.next()){
-                if(rs.getString("Type").equals(n)){
-                    return rs.getString("Name");
-                }
-            }
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return "Fail";
-    } 
     
-    //Get the animal type using animal's name
-    public String getType(String l){
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery("SELECT Name, Type FROM Animal;");
-            while(rs.next()){
-                if(rs.getString("Name").equals(l)){
-                    return rs.getString("Type");
-                }
-            }
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return "Fail";
-    }
-    
-    //Get the location using animal's name
-    public String getLocation(String l){
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery("SELECT Name, Location FROM Animal;");
-            while(rs.next()){
-                if(rs.getString("Name").equals(l)){
-                    return rs.getString("Location");
-                }
-            }
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return "Fail";
-    }
-    //Get the location using animal's name
-    public String getActivity(String l){
-        try{
-            st = conn.createStatement();
-            rs = st.executeQuery("SELECT Name, Location FROM Activity;");
-            while(rs.next()){
-                if(rs.getString("Name").equals(l)){
-                    return rs.getString("Activity");
-                }
-            }
-            
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-        return "Fail";
-    }  
 }
