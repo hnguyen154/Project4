@@ -384,14 +384,19 @@ public class View extends javax.swing.JFrame {
         TransportPane.add(MoveInTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
         TransportPane.add(MoveInField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 222, -1));
 
-        MoveOutBtn.setText("Move");
-        TransportPane.add(MoveOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 262, -1, -1));
+        MoveOutBtn.setText("Delete Animal Records");
+        TransportPane.add(MoveOutBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
 
-        MoveInBtn.setText("Move");
+        MoveInBtn.setText("Relocate Animal");
         TransportPane.add(MoveInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 263, -1, -1));
 
-        Reset3.setText("Reset");
-        TransportPane.add(Reset3, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 262, -1, -1));
+        Reset3.setText("RESET ");
+        Reset3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reset3ActionPerformed(evt);
+            }
+        });
+        TransportPane.add(Reset3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
         MoveOutTitle1.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         MoveOutTitle1.setText("Name:");
@@ -463,6 +468,10 @@ public class View extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Reset3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reset3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Reset3ActionPerformed
 
     /**
      * @param args the command line arguments
