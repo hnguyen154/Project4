@@ -236,29 +236,35 @@ public class View extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        SearchPane.setBackground(new java.awt.Color(204, 204, 255));
         SearchPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        SearchName.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         SearchName.setText("Name:");
         SearchPane.add(SearchName, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
 
         SearchNameField.setEditable(false);
         SearchPane.add(SearchNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, 178, -1));
 
+        SearchType.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         SearchType.setText("Type:");
         SearchPane.add(SearchType, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 139, -1, -1));
 
         SearchTypeField.setEditable(false);
         SearchPane.add(SearchTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 140, 178, -1));
 
+        SearchName2.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         SearchName2.setText("Location:");
         SearchPane.add(SearchName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 216, -1, -1));
 
         SearchLocationField.setEditable(false);
         SearchPane.add(SearchLocationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 178, -1));
 
-        jLabel1.setText("SEARCH FOR ANIMAL");
-        SearchPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel1.setText("SEARCH FOR ANIMAL:");
+        SearchPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         SearchField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         SearchPane.add(SearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 230, -1));
@@ -266,16 +272,20 @@ public class View extends javax.swing.JFrame {
         SearchBtn.setText("SEARCH");
         SearchPane.add(SearchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         jLabel2.setText("Animal's Type");
         SearchPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         ContentPane.addTab("Search", SearchPane);
 
+        AddAnimalPane.setBackground(new java.awt.Color(204, 255, 204));
         AddAnimalPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        addNameTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         addNameTitle.setText("Name:");
         AddAnimalPane.add(addNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
+        addTypeTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         addTypeTitle.setText("Type:");
         AddAnimalPane.add(addTypeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
         AddAnimalPane.add(AddNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 197, -1));
@@ -283,8 +293,9 @@ public class View extends javax.swing.JFrame {
 
         addAnimalBtn.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         addAnimalBtn.setLabel("Add Animal");
-        AddAnimalPane.add(addAnimalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
+        AddAnimalPane.add(addAnimalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
 
+        addLocationTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         addLocationTitle.setText("Location:");
         AddAnimalPane.add(addLocationTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
         AddAnimalPane.add(AddTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 197, -1));
@@ -314,14 +325,16 @@ public class View extends javax.swing.JFrame {
 
         ContentPane.addTab("Add Animal", AddAnimalPane);
 
+        AddActivityPane.setBackground(new java.awt.Color(255, 153, 153));
         AddActivityPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        AnimalNameTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         AnimalNameTitle.setText("Name:");
         AddActivityPane.add(AnimalNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
-        AddActivityTitle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        AddActivityTitle.setText("Add Activity");
-        AddActivityPane.add(AddActivityTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        AddActivityTitle.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        AddActivityTitle.setText("Activity:");
+        AddActivityPane.add(AddActivityTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
         AddActivityPane.add(ActivityField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 240, -1));
 
         AddActivityBtn.setText("Add Activity");
@@ -353,14 +366,18 @@ public class View extends javax.swing.JFrame {
 
         ContentPane.addTab("Add Activity", AddActivityPane);
 
+        TransportPane.setBackground(new java.awt.Color(153, 204, 255));
         TransportPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        CategoryIn.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         CategoryIn.setText("Within Zoo");
         TransportPane.add(CategoryIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 73, -1, -1));
 
+        CateoryOut.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         CateoryOut.setText("Outside of the Zoo");
         TransportPane.add(CateoryOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, -1, -1));
 
+        MoveInTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         MoveInTitle.setText("Move to: ");
         MoveInTitle.setToolTipText("");
         TransportPane.add(MoveInTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
@@ -375,16 +392,19 @@ public class View extends javax.swing.JFrame {
         Reset3.setText("Reset");
         TransportPane.add(Reset3, new org.netbeans.lib.awtextra.AbsoluteConstraints(417, 262, -1, -1));
 
+        MoveOutTitle1.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         MoveOutTitle1.setText("Name:");
         MoveOutTitle1.setToolTipText("");
         TransportPane.add(MoveOutTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 114, -1, -1));
 
+        MoveOutTypeTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         MoveOutTypeTitle.setText("Type:");
         MoveOutTypeTitle.setToolTipText("");
         TransportPane.add(MoveOutTypeTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, -1, -1));
         TransportPane.add(MoveOutNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 110, 222, -1));
         TransportPane.add(MoveOutTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 170, 222, -1));
 
+        MoveInNameTitle.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         MoveInNameTitle.setText("Name:");
         MoveInNameTitle.setToolTipText("");
         TransportPane.add(MoveInNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
@@ -392,6 +412,7 @@ public class View extends javax.swing.JFrame {
 
         ContentPane.addTab("Transporting", TransportPane);
 
+        Title.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         Title.setText("ZOOLOGISTICS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -399,17 +420,17 @@ public class View extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ContentPane)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(372, 372, 372)
                 .addComponent(Title)
-                .addGap(411, 411, 411))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(Title)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
