@@ -130,11 +130,9 @@ public class Control {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 if(view.getMoveName().equals("")&& view.getMoveLocation().equals("")){
-                    System.out.println("ACtion Performed 1");
                     JOptionPane.showMessageDialog(null,"No Value!","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 else if(db.ConstrainName(view.getMoveName())) {
-                    System.out.println("ACtion Performed 2");
                     try{
                         db.UpdateLocation(view.getMoveLocation(), view.getMoveName());
                         db.updateLocationTable(view);
