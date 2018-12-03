@@ -125,29 +125,31 @@ public class Control {
 
 
 //-------------------------------------------------------Deleting-----------------------------------------------------------------------------
-//        //Move to different place within the zoo
-//        view.addMoveInListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent evt) {
-//                if(view.getMoveName().equals("")&& view.getMoveLocation().equals("")){
-//                    JOptionPane.showMessageDialog(null,"No Value!","Error",JOptionPane.ERROR_MESSAGE);
-//                }
-//                else if(db.ConstrainName(view.getMoveName())) {
-//                    try{
-//                        db.UpdateLocation(view.getMoveLocation(), view.getMoveName());
-//                        db.updateLocationTable(view);
-//                        JOptionPane.showMessageDialog(view, "Item moved successfully.");
-//                    }
-//                    catch (SQLException ex) {
-//                        Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
-//                    }   
-//                }
-//                else{
-//                    JOptionPane.showMessageDialog(null,"Invalid Values!","Error",JOptionPane.ERROR_MESSAGE);
-//                }
-//               
-//            }
-//        });
+        //Move to different place within the zoo
+        view.addMoveInListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                if(view.getMoveName().equals("")&& view.getMoveLocation().equals("")){
+                    System.out.println("ACtion Performed 1");
+                    JOptionPane.showMessageDialog(null,"No Value!","Error",JOptionPane.ERROR_MESSAGE);
+                }
+                else if(db.ConstrainName(view.getMoveName())) {
+                    System.out.println("ACtion Performed 2");
+                    try{
+                        db.UpdateLocation(view.getMoveLocation(), view.getMoveName());
+                        db.updateLocationTable(view);
+                        JOptionPane.showMessageDialog(view, "Item moved successfully.");
+                    }
+                    catch (SQLException ex) {
+                        Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+                    }   
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Invalid Values!","Error",JOptionPane.ERROR_MESSAGE);
+                }
+               
+            }
+        });
         //Move out of the Zoo = Delete the Animal off database
         view.addMoveOutListener(new ActionListener() {
         @Override
