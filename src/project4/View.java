@@ -218,6 +218,7 @@ public class View extends javax.swing.JFrame {
         MoveInNameTitle = new javax.swing.JLabel();
         MoveInNameField = new javax.swing.JTextField();
         Title = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         MenuBar = new javax.swing.JMenuBar();
         File = new javax.swing.JMenu();
         Exit = new javax.swing.JMenu();
@@ -412,9 +413,10 @@ public class View extends javax.swing.JFrame {
 
         ContentPane.addTab("Transporting", TransportPane);
 
-        Title.setFont(new java.awt.Font("Georgia", 3, 36)); // NOI18N
-        Title.setText("  ZooLogistics  ");
-        Title.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Title.setFont(new java.awt.Font("Superclarendon", 3, 36)); // NOI18N
+        Title.setText("Logistics");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/project4/zooLogo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -422,16 +424,20 @@ public class View extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ContentPane)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(348, 348, 348)
+                .addGap(323, 323, 323)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Title)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(Title)
-                .addGap(18, 18, 18)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ContentPane, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -543,6 +549,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
