@@ -186,6 +186,17 @@ public class Database {
     //Update a new location
     public void UpdateLocation (String location, String name){
         try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        try {
             conn = DriverManager.getConnection(url);
             st = conn.createStatement();
 
