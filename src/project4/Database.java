@@ -184,38 +184,38 @@ public class Database {
         return out;
     }
 //    //Update a new location
-//    public void UpdateLocation (String location, String name){
-//        try {
-//            conn = DriverManager.getConnection(url);
-//            st = conn.createStatement();
-//
-//            //Delete Location table
-//            String sql = "UPDATE Animal SET Location='" + location + "'" + " WHERE Name ='" + name + "';";
-//            st.executeUpdate(sql);
-//            System.out.println("Location got updated!");
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        } finally {
-//            try {
-//                if (rs != null) {
-//                    rs.close();
-//                }
-//                if (st != null) {
-//                    st.close();
-//                }
-//                if (conn != null) {
-//                    conn.close();
-//                }
-//
-//            } catch (SQLException ex) {
-//                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
-//    
-//    
+    public void UpdateLocation (String location, String name){
+        try {
+            System.out.println("inside update location function!!");
+            conn = DriverManager.getConnection(url);
+            st = conn.createStatement();
+
+            //Delete Location table
+            String sql = "UPDATE Animal SET Location='" + location + "'" + " WHERE Name='" + name + "';";
+            st.executeUpdate(sql);
+            System.out.println("Location got updated!");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     //Delete item based on Animal's name
     public void MoveAnimalOut(String Table, String col, String data) {
 
